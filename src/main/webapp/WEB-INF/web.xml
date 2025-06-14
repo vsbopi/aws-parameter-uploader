@@ -1,0 +1,7 @@
+<web-app xmlns="http://jakarta.ee/xml/ns/jakartaee" version="5.0">
+    <servlet>
+        <servlet-name>UploadServlet</servlet-name>
+        <servlet-class>com.example.UploadServlet</servlet-class>
+    </servlet>
+
+</web-app>
