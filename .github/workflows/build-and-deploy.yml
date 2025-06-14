@@ -20,7 +20,7 @@ jobs:
       - name: Build WAR
         run: mvn clean package
 
-      - name: Log in to Amazon ECR
+      - name: Log in to Amazon ECR 1
         uses: aws-actions/configure-aws-credentials@v2
         with:
           aws-access-key-id: ${{ secrets.AWS_KEY }}
