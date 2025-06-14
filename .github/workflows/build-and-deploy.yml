@@ -1,0 +1,40 @@
+name: Build and Push Docker Image
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: Build WAR
+        run: mvn clean package
+
+      - name: Log in to Amazon ECR
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Build, tag, and push image to ECR
+        env:
+          ECR_REPO: aws-parameter-uploader
+          IMAGE_TAG: latest
+        run: |
+          docker build -t $ECR_REPO:$IMAGE_TAG .
+          docker push $ECR_REPO:$IMAGE_TAG
+
+      - name: Commit updated manifest (optional if you're pinning image tags)
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          sed -i "s|image: .*|image: $ECR_REPO:$IMAGE_TAG|" k8s/deployment.yaml
+          git commit -am "Update image tag"
+          git push
