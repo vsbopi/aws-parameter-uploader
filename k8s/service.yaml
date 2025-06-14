@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: java-web-service
+  name: aws-parameter-uploader
 spec:
   selector:
-    app: java-web-app
+    app: aws-parameter-uploader
   ports:
     - protocol: TCP
       port: 80
