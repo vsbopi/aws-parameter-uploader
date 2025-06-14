@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: java-web-app
+  name: aws-parameter-uploader
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: java-web-app
+      app: aws-parameter-uploader
   template:
     metadata:
       labels:
-        app: java-web-app
+        app: aws-parameter-uploader
     spec:
       containers:
-        - name: java-web
-          image: <your-ecr-repo>:latest
+        - name: uploader
+          image: 626890267457.dkr.ecr.ap-south-1.amazonaws.com/aws-parameter-uploader:${GITHUB_RUN_ID}
           ports:
             - containerPort: 8080
