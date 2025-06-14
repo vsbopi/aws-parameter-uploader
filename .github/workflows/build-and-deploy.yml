@@ -33,7 +33,7 @@ jobs:
         run: |
               REPO_NAME=${GITHUB_REPOSITORY#"vsbopi/"}
               IMAGE_TAG=$GITHUB_RUN_ID
-              docker build . -t ${{ vars.BUILD_ECR_URL }}/${REPO_NAME}:${IMAGE_TAG}
-              docker push ${{ vars.BUILD_ECR_URL }}/${REPO_NAME}:${IMAGE_TAG}
+              docker build . -t ${{ vars.BUILD_ECR_URL }}/${REPO_NAME}:latest
+              docker push ${{ vars.BUILD_ECR_URL }}/${REPO_NAME}:latest
       - name: Logout from Docker hub
         run: docker logout
