@@ -5,7 +5,8 @@ metadata:
 spec:
   replicas: 1
   selector:
-    app: aws-parameter-uploader
+    matchLabels:
+      app: aws-parameter-uploader
   template:
     metadata:
       labels:
