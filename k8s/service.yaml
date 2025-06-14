@@ -5,7 +5,7 @@ metadata:
   namespace: aws-parameter-uploader
 spec:
   selector:
-    app.kubernetes.io/name: aws-parameter-uploader
+    app: aws-parameter-uploader
   ports:
     - protocol: TCP
       port: 80
